@@ -1,0 +1,47 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.3'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.health'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+// https://mvnrepository.com/artifact/io.kubernetes/client-java
+// https://mvnrepository.com/artifact/io.kubernetes/client-java
+	implementation 'io.kubernetes:client-java:20.0.1'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'io.micrometer:micrometer-core'
+	runtimeOnly 'org.postgresql:postgresql'
+	implementation 'io.micrometer:micrometer-registry-prometheus'
+// https://mvnrepository.com/artifact/com.yugabyte/jdbc-yugabytedb
+	testImplementation 'com.yugabyte:jdbc-yugabytedb:42.3.5-yb-6'
+	implementation 'com.zaxxer:HikariCP'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'io.prometheus:simpleclient_spring_boot'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
